@@ -94,7 +94,11 @@ function renderCards() {
         });
 
         cardDiv.addEventListener('click', () => {
-            showCardDetails(index);
+            if (selectedCard === card) {
+                hideReadingPane();
+            } else {
+                showCardDetails(index);
+            }
         });
 
         const titleEl = document.createElement('h3');
@@ -177,6 +181,12 @@ function showCardDetails(index) {
         }
     });
     readingPane.appendChild(addCommentBtn);
+}
+
+function hideReadingPane() {
+    readingPane.innerHTML = '<p>Select a card to view its details.</p>';
+    delete readingPane.dataset.index;
+    selectedCard = null;
 }
 
 renderCards();
