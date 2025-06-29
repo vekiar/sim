@@ -28,6 +28,14 @@ searchInput.addEventListener('input', () => {
     renderCards();
 });
 
+// Allow pressing Enter in the search field to trigger the search
+searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        renderCards();
+    }
+});
+
 function saveCards() {
     localStorage.setItem('cards', JSON.stringify(cards));
 }
@@ -178,6 +186,13 @@ function showCardDetails(index) {
             saveCards();
             commentInput.value = '';
             showCardDetails(index);
+        }
+    });
+    // Pressing Enter (without Shift) should submit the comment
+    commentInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            addCommentBtn.click();
         }
     });
     readingPane.appendChild(addCommentBtn);
