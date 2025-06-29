@@ -2,6 +2,7 @@
 
 This is a very small issue management system implemented with plain HTML, CSS and JavaScript.
 
-Open `index.html` in a browser to get started. Use the form at the top of the page to create new cards.
-Each card has a title, description and an area to add comments. Cards can be moved up or down in the list
-using their respective buttons, or reordered by dragging and dropping them.
+Open `index.html` in a browser to get started. Click the `+` button in the page
+header to open the card creation form. Cards appear in the inbox on the left and
+can be reordered by dragging them. Selecting a card opens a reading pane on the
+right where its comments can be viewed and added.

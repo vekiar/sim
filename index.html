@@ -6,15 +6,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Simple Issue Manager</h1>
+    <h1>Simple Issue Manager <button id="showForm">+</button></h1>
 
-    <form id="cardForm">
-        <input type="text" id="titleInput" placeholder="Title" required>
-        <textarea id="descriptionInput" placeholder="Description" required></textarea>
-        <button type="submit">Add Card</button>
-    </form>
+    <div id="overlay" class="hidden">
+        <form id="cardForm" class="overlay-content">
+            <h2>Create Card</h2>
+            <input type="text" id="titleInput" placeholder="Title" required>
+            <textarea id="descriptionInput" placeholder="Description" required></textarea>
+            <button type="submit">Add Card</button>
+            <button type="button" id="closeForm">Cancel</button>
+        </form>
+    </div>
 
-    <div id="cardList"></div>
+    <div id="main">
+        <div id="inbox"></div>
+        <div id="readingPane">
+            <p>Select a card to view its details.</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

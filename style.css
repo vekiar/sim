@@ -3,7 +3,25 @@ body {
     padding: 20px;
 }
 
-#cardForm textarea, #cardForm input[type="text"] {
+
+#main {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+#inbox {
+    width: 25%;
+    overflow-y: auto;
+}
+
+#readingPane {
+    flex: 1;
+    padding-left: 20px;
+}
+
+#cardForm textarea,
+#cardForm input[type="text"] {
+
     width: 100%;
     margin-bottom: 5px;
 }
@@ -12,9 +30,34 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
-    width: 25%;
+    background: #fff;
+    cursor: pointer;
+
 }
 
 .card button {
     margin-right: 5px;
 }
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#overlay.hidden {
+    display: none;
+}
+
+.overlay-content {
+    background: #fff;
+    padding: 20px;
+    width: 300px;
+}
+
