@@ -1,4 +1,5 @@
 const cards = [];
+let selectedCard = null;
 
 const inbox = document.getElementById('inbox');
 const cardForm = document.getElementById('cardForm');
@@ -53,12 +54,15 @@ function renderCards() {
             const from = parseInt(e.dataTransfer.getData('text/plain'), 10);
             const to = parseInt(cardDiv.dataset.index, 10);
             if (from !== to) {
+                const selected = selectedCard;
                 const [moved] = cards.splice(from, 1);
                 cards.splice(to, 0, moved);
                 renderCards();
-
-                if (readingPane.dataset.index) {
-                    showCardDetails(parseInt(readingPane.dataset.index, 10));
+                if (selected) {
+                    const newIndex = cards.indexOf(selected);
+                    if (newIndex !== -1) {
+                        showCardDetails(newIndex);
+                    }
                 }
             }
         });
@@ -83,8 +87,15 @@ function renderCards() {
             e.stopPropagation();
 
             if (index > 0) {
+                const selected = selectedCard;
                 [cards[index], cards[index - 1]] = [cards[index - 1], cards[index]];
                 renderCards();
+                if (selected) {
+                    const newIndex = cards.indexOf(selected);
+                    if (newIndex !== -1) {
+                        showCardDetails(newIndex);
+                    }
+                }
             }
         });
         cardDiv.appendChild(upBtn);
@@ -97,8 +108,15 @@ function renderCards() {
             e.stopPropagation();
 
             if (index < cards.length - 1) {
+                const selected = selectedCard;
                 [cards[index], cards[index + 1]] = [cards[index + 1], cards[index]];
                 renderCards();
+                if (selected) {
+                    const newIndex = cards.indexOf(selected);
+                    if (newIndex !== -1) {
+                        showCardDetails(newIndex);
+                    }
+                }
             }
         });
         cardDiv.appendChild(downBtn);
@@ -110,6 +128,7 @@ function renderCards() {
 function showCardDetails(index) {
     const card = cards[index];
     if (!card) return;
+    selectedCard = card;
     readingPane.dataset.index = index;
     readingPane.innerHTML = '';
 
