@@ -124,3 +124,31 @@ a:visited {
     width: 300px;
 }
 
+/* Comment styles */
+.comments {
+    margin-top: 10px;
+}
+
+.comment-box {
+    border: 1px solid #fe8019;
+    background: #3c3836;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-meta {
+    font-size: 9px;
+    color: #bdae93;
+    margin-bottom: 3px;
+}
+
+.comment-text {
+    font-size: 10px;
+}
+
+.comment-input {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
