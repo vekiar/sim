@@ -1,0 +1,16 @@
+{
+  "name": "sim",
+  "version": "1.0.0",
+  "description": "This is a very small issue management system implemented with plain HTML, CSS and JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "test": "node test/search-bar.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}
