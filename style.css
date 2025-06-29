@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#cardForm textarea, #cardForm input[type="text"] {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.card button {
+    margin-right: 5px;
+}
