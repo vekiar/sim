@@ -1,4 +1,5 @@
-const cards = [];
+// Persist cards between sessions (see issue #8)
+const cards = JSON.parse(localStorage.getItem('cards') || '[]');
 let selectedCard = null;
 
 const inbox = document.getElementById('inbox');
@@ -9,6 +10,10 @@ const overlay = document.getElementById('overlay');
 const showFormBtn = document.getElementById('showForm');
 const closeFormBtn = document.getElementById('closeForm');
 const readingPane = document.getElementById('readingPane');
+
+function saveCards() {
+    localStorage.setItem('cards', JSON.stringify(cards));
+}
 
 showFormBtn.addEventListener('click', () => {
     overlay.classList.remove('hidden');
@@ -27,6 +32,7 @@ cardForm.addEventListener('submit', (e) => {
     const description = descriptionInput.value.trim();
     if (!title) return;
     cards.push({ title, description, comments: [] });
+    saveCards();
 
     cardForm.reset();
     overlay.classList.add('hidden');
@@ -57,6 +63,7 @@ function renderCards() {
                 const selected = selectedCard;
                 const [moved] = cards.splice(from, 1);
                 cards.splice(to, 0, moved);
+                saveCards();
                 renderCards();
                 if (selected) {
                     const newIndex = cards.indexOf(selected);
@@ -78,6 +85,7 @@ function renderCards() {
         const descEl = document.createElement('p');
         descEl.textContent = card.description;
         cardDiv.appendChild(descEl);
+
 
 
         /*
@@ -124,6 +132,7 @@ function showCardDetails(index) {
         const text = commentInput.value.trim();
         if (text) {
             card.comments.push(text);
+            saveCards();
             commentInput.value = '';
             showCardDetails(index);
         }
