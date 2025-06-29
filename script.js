@@ -1,5 +1,17 @@
 // Persist cards between sessions (see issue #8)
 const cards = JSON.parse(localStorage.getItem('cards') || '[]');
+// Normalize comment format to objects with text and timestamp
+cards.forEach((card) => {
+    if (Array.isArray(card.comments)) {
+        card.comments = card.comments.map((c) =>
+            typeof c === 'object' && c !== null
+                ? c
+                : { text: c, timestamp: Date.now() }
+        );
+    } else {
+        card.comments = [];
+    }
+});
 let selectedCard = null;
 
 const inbox = document.getElementById('inbox');
@@ -113,17 +125,29 @@ function showCardDetails(index) {
     descEl.textContent = card.description;
     readingPane.appendChild(descEl);
 
-    const commentsList = document.createElement('ul');
+    const commentsContainer = document.createElement('div');
+    commentsContainer.className = 'comments';
     card.comments.forEach((c) => {
-        const li = document.createElement('li');
-        li.textContent = c;
-        commentsList.appendChild(li);
-    });
-    readingPane.appendChild(commentsList);
+        const commentBox = document.createElement('div');
+        commentBox.className = 'comment-box';
 
-    const commentInput = document.createElement('input');
-    commentInput.type = 'text';
+        const meta = document.createElement('div');
+        meta.className = 'comment-meta';
+        meta.textContent = new Date(c.timestamp).toLocaleString();
+        commentBox.appendChild(meta);
+
+        const textEl = document.createElement('div');
+        textEl.className = 'comment-text';
+        textEl.textContent = c.text;
+        commentBox.appendChild(textEl);
+
+        commentsContainer.appendChild(commentBox);
+    });
+    readingPane.appendChild(commentsContainer);
+
+    const commentInput = document.createElement('textarea');
     commentInput.placeholder = 'Add comment';
+    commentInput.className = 'comment-input';
     readingPane.appendChild(commentInput);
 
     const addCommentBtn = document.createElement('button');
@@ -131,7 +155,7 @@ function showCardDetails(index) {
     addCommentBtn.addEventListener('click', () => {
         const text = commentInput.value.trim();
         if (text) {
-            card.comments.push(text);
+            card.comments.push({ text, timestamp: Date.now() });
             saveCards();
             commentInput.value = '';
             showCardDetails(index);
