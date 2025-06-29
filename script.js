@@ -87,48 +87,12 @@ function renderCards() {
         cardDiv.appendChild(descEl);
 
 
-        const upBtn = document.createElement('button');
-        upBtn.textContent = 'Move Up';
-        upBtn.disabled = index === 0;
-        upBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
 
-            if (index > 0) {
-                const selected = selectedCard;
-                [cards[index], cards[index - 1]] = [cards[index - 1], cards[index]];
-                saveCards();
-                renderCards();
-                if (selected) {
-                    const newIndex = cards.indexOf(selected);
-                    if (newIndex !== -1) {
-                        showCardDetails(newIndex);
-                    }
-                }
-            }
-        });
-        cardDiv.appendChild(upBtn);
-
-        const downBtn = document.createElement('button');
-        downBtn.textContent = 'Move Down';
-        downBtn.disabled = index === cards.length - 1;
-
-        downBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-
-            if (index < cards.length - 1) {
-                const selected = selectedCard;
-                [cards[index], cards[index + 1]] = [cards[index + 1], cards[index]];
-                saveCards();
-                renderCards();
-                if (selected) {
-                    const newIndex = cards.indexOf(selected);
-                    if (newIndex !== -1) {
-                        showCardDetails(newIndex);
-                    }
-                }
-            }
-        });
-        cardDiv.appendChild(downBtn);
+        /*
+         * The UI previously included "Move Up" and "Move Down" buttons for
+         * reordering cards. Since drag-and-drop support has been implemented
+         * these controls are redundant and have been removed (issue #9).
+         */
 
         inbox.appendChild(cardDiv);
     });
