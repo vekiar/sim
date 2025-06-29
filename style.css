@@ -160,5 +160,12 @@ a:visited {
     margin-top: 5px;
     margin-bottom: 5px;
     box-sizing: border-box;
+    background: #3c3836;
+    color: #ebdbb2;
+    border: 1px solid #fe8019;
+}
+
+.comment-input::placeholder {
+    color: #bdae93;
 }
 
