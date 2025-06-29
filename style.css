@@ -1,12 +1,45 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10pt;
+    color: #828282;
+    background: #f6f6ef;
+    margin: 0;
     padding: 20px;
+}
+
+h1 {
+    background: #ff6600;
+    color: #000;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 3px 6px;
+    margin: 0 0 10px 0;
+}
+
+h1 button {
+    background: #fff;
+    color: #000;
+    border: 1px solid #ff6600;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+a:link {
+    color: #000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #828282;
+    text-decoration: none;
 }
 
 
 #main {
     display: flex;
     height: calc(100vh - 60px);
+    width: 85%;
+    margin: 0 auto;
 }
 
 #inbox {
@@ -27,7 +60,7 @@ body {
 }
 
 .card {
-    border: 1px solid #ccc;
+    border: 1px solid #ff6600;
     padding: 10px;
     margin-bottom: 10px;
     background: #fff;
