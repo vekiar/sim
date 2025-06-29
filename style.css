@@ -53,8 +53,13 @@ h1 button {
 
 #searchInput {
     display: block;
-    margin: 0 0 10px 6px;
+    margin: 0 0 10px 20px;
+    width: calc(25% - 20px);
     padding: 2px 4px;
+    box-sizing: border-box;
+    border: 1px solid #fe8019;
+    background: #3c3836;
+    color: #ebdbb2;
 }
 
 a:link {
