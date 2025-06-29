@@ -10,6 +10,11 @@ const overlay = document.getElementById('overlay');
 const showFormBtn = document.getElementById('showForm');
 const closeFormBtn = document.getElementById('closeForm');
 const readingPane = document.getElementById('readingPane');
+const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('input', () => {
+    renderCards();
+});
 
 function saveCards() {
     localStorage.setItem('cards', JSON.stringify(cards));
@@ -40,8 +45,10 @@ cardForm.addEventListener('submit', (e) => {
 });
 
 function renderCards() {
+    const query = searchInput.value.trim().toLowerCase();
     inbox.innerHTML = '';
     cards.forEach((card, index) => {
+        if (query && !matches(card, query)) return;
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card';
         cardDiv.setAttribute('draggable', 'true');
@@ -96,6 +103,14 @@ function renderCards() {
 
         inbox.appendChild(cardDiv);
     });
+}
+
+function matches(card, query) {
+    return (
+        card.title.toLowerCase().includes(query) ||
+        card.description.toLowerCase().includes(query) ||
+        card.comments.some((c) => c.toLowerCase().includes(query))
+    );
 }
 
 function showCardDetails(index) {
