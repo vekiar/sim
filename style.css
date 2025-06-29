@@ -77,6 +77,8 @@ a:visited {
 #inbox {
     width: 25%;
     overflow-y: auto;
+    padding-left: 20px;
+    box-sizing: border-box;
 }
 
 #readingPane {
@@ -151,5 +153,6 @@ a:visited {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+    box-sizing: border-box;
 }
 
