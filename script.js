@@ -19,12 +19,14 @@ closeFormBtn.addEventListener('click', () => {
     cardForm.reset();
 });
 
+
 cardForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const title = titleInput.value.trim();
     const description = descriptionInput.value.trim();
     if (!title) return;
     cards.push({ title, description, comments: [] });
+
     cardForm.reset();
     overlay.classList.add('hidden');
     renderCards();
@@ -54,6 +56,7 @@ function renderCards() {
                 const [moved] = cards.splice(from, 1);
                 cards.splice(to, 0, moved);
                 renderCards();
+
                 if (readingPane.dataset.index) {
                     showCardDetails(parseInt(readingPane.dataset.index, 10));
                 }
@@ -72,11 +75,13 @@ function renderCards() {
         descEl.textContent = card.description;
         cardDiv.appendChild(descEl);
 
+
         const upBtn = document.createElement('button');
         upBtn.textContent = 'Move Up';
         upBtn.disabled = index === 0;
         upBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+
             if (index > 0) {
                 [cards[index], cards[index - 1]] = [cards[index - 1], cards[index]];
                 renderCards();
@@ -87,8 +92,10 @@ function renderCards() {
         const downBtn = document.createElement('button');
         downBtn.textContent = 'Move Down';
         downBtn.disabled = index === cards.length - 1;
+
         downBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+
             if (index < cards.length - 1) {
                 [cards[index], cards[index + 1]] = [cards[index + 1], cards[index]];
                 renderCards();
