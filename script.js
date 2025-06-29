@@ -20,6 +20,27 @@ function renderCards() {
     cards.forEach((card, index) => {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card';
+        cardDiv.setAttribute('draggable', 'true');
+        cardDiv.dataset.index = index;
+
+        cardDiv.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', index.toString());
+        });
+
+        cardDiv.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        cardDiv.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const from = parseInt(e.dataTransfer.getData('text/plain'), 10);
+            const to = parseInt(cardDiv.dataset.index, 10);
+            if (from !== to) {
+                const [moved] = cards.splice(from, 1);
+                cards.splice(to, 0, moved);
+                renderCards();
+            }
+        });
 
         const titleEl = document.createElement('h3');
         titleEl.textContent = card.title;
