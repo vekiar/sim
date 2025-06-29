@@ -1,10 +1,37 @@
 body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10pt;
-    color: #828282;
-    background: #f6f6ef;
+    color: #ebdbb2; /* gruvbox fg */
+    background: #282828; /* gruvbox bg */
     margin: 0;
-    padding: 20px;
+    padding: 0;
+}
+
+h1 {
+    background: #3c3836; /* gruvbox dark1 */
+    color: #ebdbb2;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 3px 6px;
+    margin: 0 0 10px 0;
+}
+
+h1 button {
+    background: #ebdbb2;
+    color: #282828;
+    border: 1px solid #fe8019;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+a:link {
+    color: #fabd2f; /* gruvbox yellow */
+    text-decoration: none;
+}
+
+a:visited {
+    color: #d3869b; /* gruvbox purple */
+    text-decoration: none;
 }
 
 h1 {
@@ -38,8 +65,8 @@ a:visited {
 #main {
     display: flex;
     height: calc(100vh - 60px);
-    width: 85%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
 }
 
 #inbox {
@@ -60,10 +87,10 @@ a:visited {
 }
 
 .card {
-    border: 1px solid #ff6600;
+    border: 1px solid #fe8019; /* gruvbox orange */
     padding: 10px;
     margin-bottom: 10px;
-    background: #fff;
+    background: #3c3836;
     cursor: pointer;
 
 }
@@ -89,7 +116,8 @@ a:visited {
 }
 
 .overlay-content {
-    background: #fff;
+    background: #282828;
+    color: #ebdbb2;
     padding: 20px;
     width: 300px;
 }
